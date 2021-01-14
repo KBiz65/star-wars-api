@@ -1,4 +1,5 @@
 import React from "react";
+import DataItem from "./DataItem";
 
 class DisplayData extends React.Component {
   constructor(props) {
@@ -18,6 +19,11 @@ class DisplayData extends React.Component {
   }
 
   render() {
+    this.state.characterArray.forEach((element) => {
+      const elementItems = element.map((item) => {
+        <DataItem key={item.name} item={item} />;
+      });
+    });
     return (
       <div className="data-display-container">
         <h1>DisplayData data</h1>

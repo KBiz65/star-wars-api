@@ -47,10 +47,6 @@ class InputForm extends React.Component {
       });
   }
 
-  // handleChange(event) {
-  //   console.log("handleChange called");
-  // }
-
   render() {
     return (
       <div className="data-container">
