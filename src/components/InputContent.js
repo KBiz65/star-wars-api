@@ -7,13 +7,7 @@ class InputContent extends React.Component {
     this.state = {
       data: [],
     };
-
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  // handleSubmit(event) {
-  //   console.log("handleSubmit called");
-  // }
 
   render() {
     return (
