@@ -1,33 +1,24 @@
 import React from "react";
-import DataItem from "./DataItem";
+import DisplayItem from "./DisplayItem";
 
 class DisplayData extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      characterArray: props.data,
-      name: "",
-      birthdate: "",
-      height: "",
-      mass: "",
-      homeworld: "",
-      species: "",
-    };
-
-    // console.log("props.data from DisplayData", props.data);
-    // console.log("characterArray: ", this.state.characterArray);
-  }
-
   render() {
-    this.state.characterArray.forEach((element) => {
-      const elementItems = element.map((item) => {
-        <DataItem key={item.name} item={item} />;
-      });
-    });
+    // console.log("this.props: ", this.props);
+    // console.log("this.props.characters", this.props.characters);
+    const characterInfo = this.props.characters.map((array) => (
+      <DisplayItem
+        key={array.name}
+        name={array.name}
+        birthdate={array.birth_year}
+        height={array.height}
+        mass={array.mass}
+        homeworld={array.homeworld}
+        species={array.species}
+      />
+    ));
     return (
-      <div className="data-display-container">
-        <h1>DisplayData data</h1>
-        <div>Row data goes here: </div>
+      <div>
+        <div>{characterInfo}</div>
       </div>
     );
   }

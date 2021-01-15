@@ -3,8 +3,8 @@ import axios from "axios";
 import DisplayData from "./DisplayData";
 
 class InputForm extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       characters: [],
     };
@@ -13,7 +13,7 @@ class InputForm extends React.Component {
 
   componentDidMount() {
     let allCharacters = this.state.characters;
-    axios.get("https://swapi.dev/api/people/?search=").then((response) => {
+    axios.get("https://swapi.dev/api/people/").then((response) => {
       response.data.results.forEach((element) => {
         allCharacters.push(element);
       });
@@ -25,20 +25,26 @@ class InputForm extends React.Component {
     });
   }
 
+  // handleChange(event) {}
+
   handleSubmit(event) {
     let searchItem = event.target.searchItem.value;
     let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
     let responseArray = this.state.characters;
-    // console.log("responseArray: ", responseArray);
+    // console.log("responseArray when handleSubmit called: ", responseArray);
+    // console.log("apiURL: ", apiURL);
 
     axios
       .get(apiURL)
       .then((response) => {
-        responseArray.push(response.data.results);
-        // console.log("responseArray: ", responseArray);
+        responseArray = response.data.results;
+        // console.log(
+        //   "responseArray when pushed after axios call: ",
+        //   responseArray
+        // );
         this.setState({
           ...this.state,
-          apiResponse: responseArray,
+          characters: responseArray,
         });
         // console.log("this.state.apiResponse: ", this.state.characters);
       })
@@ -60,7 +66,7 @@ class InputForm extends React.Component {
                   type="text"
                   id="searchItem"
                   name="searchItem"
-                  value={this.state.searchItem}
+                  // value={this.state.searchItem}
                   placeholder="Enter search item here"
                   // onChange={this.handleChange}
                   required
@@ -70,7 +76,7 @@ class InputForm extends React.Component {
             </div>
           </form>
         </div>
-        <DisplayData data={this.state.characters} />
+        <DisplayData characters={this.state.characters} />
       </div>
     );
   }
