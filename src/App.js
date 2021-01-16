@@ -19,21 +19,21 @@ class App extends React.Component {
     const allCharactersGet = axios.get("https://swapi.dev/api/people/");
     allCharactersGet.then((response) => {
       this.setState({
-        characters: response.data,
+        characters: response.data.results,
       });
     });
 
     const allPlanetsGet = axios.get("https://swapi.dev/api/planets/");
     allPlanetsGet.then((response) => {
       this.setState({
-        planets: response.data,
+        planets: response.data.results,
       });
     });
 
     const allSpeciesGet = axios.get("https://swapi.dev/api/planets/");
     allSpeciesGet.then((response) => {
       this.setState({
-        species: response.data,
+        species: response.data.results,
       });
     });
   }

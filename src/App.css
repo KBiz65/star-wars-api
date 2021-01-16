@@ -12,12 +12,26 @@
   border: 1px solid blue;
 }
 
-.input-content-container h3 {
+/* .input-content-container h3 {
   font-family: "Encode Sans";
   font-weight: 400;
-}
+} */
 
-.data-display-container {
+/* .data-display-container {
   width: 95%;
   border: 1px solid black;
+} */
+
+.display-item-container {
+  width: 100%;
+}
+
+.display-row-header {
+  width: 100%;
+  margin-top: 3rem;
+  font-weight: 700;
+}
+
+.character-row {
+  margin-top: 1rem;
 }
