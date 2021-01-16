@@ -1,20 +1,15 @@
 import React from "react";
-// import axios from "axios";
+import axios from "axios";
 
 class DisplayItem extends React.Component {
-  // getItemName(item) {
-  //   axios.get(item).then((response) => {
-  //     console.log("data from axios inside function: ", response.data.name);
-  //     return response.data.name;
-  //   });
-  // }
+  getItemName(item) {
+    axios.get(item).then((response) => {
+      return response.data.name;
+    });
+  }
 
   render() {
     const charactersArray = this.props.characters;
-    // const planetName = axios.get({});
-
-    // console.log(this.props);
-    // console.log("charactersArray in DisplayItem.js: ", charactersArray);
     const characterDisplay = charactersArray.map((characterItem) => (
       <div className="row">
         <div className="col col-sm-3 character-row">{characterItem.name}</div>
@@ -26,13 +21,23 @@ class DisplayItem extends React.Component {
           {characterItem.mass}
         </div>{" "}
         <div className="col col-sm-2 character-row">
-          {characterItem.homeworld}
+          {console.log(
+            "getItemName response: ",
+            this.getItemName(characterItem.homeworld)
+          )}
+          {this.getItemName(characterItem.homeworld)}
         </div>
         <div className="col col-sm-3 character-row">
           {characterItem.species}
         </div>
       </div>
     ));
+    const homeworldsArray = this.props.planets;
+    console.log("homeworldsArray: ", homeworldsArray);
+    console.log(
+      "getItemName response: ",
+      this.getItemName("http://swapi.dev/api/planets/1/")
+    );
     return (
       <div className="display-item-container">
         <div className="row display-row-header">
