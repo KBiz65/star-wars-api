@@ -5,32 +5,30 @@ import DisplayData from "./DisplayData";
 class InputForm extends React.Component {
   constructor() {
     super();
-    this.state = {
-      characters: [],
-    };
+
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    let allCharacters = this.state.characters;
-    axios.get("https://swapi.dev/api/people/").then((response) => {
-      response.data.results.forEach((element) => {
-        allCharacters.push(element);
-      });
-    });
+  // componentDidMount() {
+  //   let allCharacters = this.state.characters;
+  //   axios.get("https://swapi.dev/api/people/").then((response) => {
+  //     response.data.results.forEach((element) => {
+  //       allCharacters.push(element);
+  //     });
+  //   });
 
-    this.setState({
-      ...this.state,
-      characters: allCharacters,
-    });
-  }
+  //   this.setState({
+  //     ...this.state,
+  //     characters: allCharacters,
+  //   });
+  // }
 
   // handleChange(event) {}
 
   handleSubmit(event) {
     let searchItem = event.target.searchItem.value;
     let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
-    let responseArray = this.state.characters;
+    let responseArray = this.props.characters;
     // console.log("responseArray when handleSubmit called: ", responseArray);
     // console.log("apiURL: ", apiURL);
 
@@ -76,7 +74,7 @@ class InputForm extends React.Component {
             </div>
           </form>
         </div>
-        <DisplayData characters={this.state.characters} />
+        <DisplayData characters={this.props.characters} />
       </div>
     );
   }
