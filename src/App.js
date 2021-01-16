@@ -43,11 +43,7 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <InputContent
-          characters={this.state.characters}
-          planets={this.state.planets}
-          species={this.state.species}
-        />
+        <InputContent />
         <DisplayItem
           characters={this.state.characters}
           planets={this.state.planets}

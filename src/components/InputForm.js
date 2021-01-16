@@ -9,22 +9,6 @@ class InputForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // componentDidMount() {
-  //   let allCharacters = this.state.characters;
-  //   axios.get("https://swapi.dev/api/people/").then((response) => {
-  //     response.data.results.forEach((element) => {
-  //       allCharacters.push(element);
-  //     });
-  //   });
-
-  //   this.setState({
-  //     ...this.state,
-  //     characters: allCharacters,
-  //   });
-  // }
-
-  // handleChange(event) {}
-
   handleSubmit(event) {
     let searchItem = event.target.searchItem.value;
     let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
