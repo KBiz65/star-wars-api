@@ -1,39 +1,18 @@
 import React from "react";
-import axios from "axios";
 
 class DisplayItem extends React.Component {
-  async getItemName(item) {
-    const itemResponse = await axios.get(item);
-    return itemResponse.data.name;
-  }
-
   render() {
-    const charactersArray = this.props.characters;
-    const characterDisplay = charactersArray.map((characterItem) => (
+    const characters = this.props.characters.map((character) => (
       <div className="row">
-        <div className="col col-sm-3 character-row">{characterItem.name}</div>
-        <div className="col col-sm-2 character-row">
-          {characterItem.birth_year}
-        </div>
-        <div className="col col-sm-1 character-row">{characterItem.height}</div>
-        <div className="col col-sm-1 character-row">
-          {characterItem.mass}
-        </div>{" "}
-        <div className="col col-sm-2 character-row">
-          {console.log(this.getItemName(characterItem.homeworld))}
-          {/* {this.getItemName(characterItem.homeworld)} */}
-        </div>
-        <div className="col col-sm-3 character-row">
-          {characterItem.species}
-        </div>
+        <div className="col col-sm-3 character-row">{character.name}</div>
+        <div className="col col-sm-2 character-row">{character.birth_year}</div>
+        <div className="col col-sm-1 character-row">{character.height}</div>
+        <div className="col col-sm-1 character-row">{character.mass}</div>{" "}
+        <div className="col col-sm-2 character-row">{character.homeworld}</div>
+        <div className="col col-sm-3 character-row">{character.species}</div>
       </div>
     ));
-    // const homeworldsArray = this.props.planets;
-    // console.log("homeworldsArray: ", homeworldsArray);
-    // console.log(
-    //   "getItemName response: ",
-    //   this.getItemName("http://swapi.dev/api/planets/1/")
-    // );
+
     return (
       <div className="display-item-container">
         <div className="row display-row-header">
@@ -44,7 +23,27 @@ class DisplayItem extends React.Component {
           <div className="col col-sm-2">Homeworld</div>
           <div className="col col-sm-3">Species</div>
         </div>
-        {characterDisplay}
+        <div>{characters}</div>
+        <div className="pages-container">
+          <button
+            type="button"
+            className="col col-sm-4 btn previous-next-buttons"
+            onclick={(e) => {
+              this.props.handlePageSubmit("previousButton");
+            }}
+          >
+            Previous Page
+          </button>
+          <button
+            type="button"
+            className="col col-sm-4 btn previous-next-buttons"
+            onclick={(e) => {
+              this.props.handlePageSubmit("nextButton");
+            }}
+          >
+            Next Page
+          </button>
+        </div>
       </div>
     );
   }

@@ -1,64 +1,38 @@
 import React from "react";
 import axios from "axios";
-import DisplayData from "./DisplayData";
+import DisplayItem from "./DisplayItem";
 
 class InputForm extends React.Component {
   constructor() {
     super();
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    let searchItem = event.target.searchItem.value;
-    let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
-    let responseArray = this.props.characters;
-    // console.log("responseArray when handleSubmit called: ", responseArray);
-    // console.log("apiURL: ", apiURL);
-
-    axios
-      .get(apiURL)
-      .then((response) => {
-        responseArray = response.data.results;
-        // console.log(
-        //   "responseArray when pushed after axios call: ",
-        //   responseArray
-        // );
-        this.setState({
-          ...this.state,
-          characters: responseArray,
-        });
-        // console.log("this.state.apiResponse: ", this.state.characters);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   render() {
     return (
       <div className="data-container">
         <div className="input-form-container">
-          <form onSubmit={this.handleSubmit}>
-            <div className="form-row expense-input-content">
-              <div className="form-group col-sm-3">
+          <form onSubmit={this.props.handleSearchSubmit}>
+            <div className="form-row input-search-text">
+              <div className="form-group col-sm-6">
                 <label className="col col-sm-.5 col-form-label"></label>
                 <input
                   className="form-control form-control-lg"
                   type="text"
-                  id="searchItem"
-                  name="searchItem"
-                  // value={this.state.searchItem}
+                  id="searchButton"
+                  name="button"
                   placeholder="Enter search item here"
-                  // onChange={this.handleChange}
                   required
                 ></input>
               </div>
-              <button type="submit">Enter</button>
+              <button
+                type="submit"
+                className="col col-sm-4 btn input-search-button"
+              >
+                Enter
+              </button>
             </div>
           </form>
         </div>
-        <DisplayData characters={this.props.characters} />
       </div>
     );
   }

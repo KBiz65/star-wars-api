@@ -1,4 +1,5 @@
 .App {
+  width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -9,18 +10,44 @@
 .header-container {
   width: 100%;
   font-size: 1.5rem;
-  border: 1px solid blue;
 }
 
-/* .input-content-container h3 {
+.input-content-container h3 {
   font-family: "Encode Sans";
   font-weight: 400;
-} */
+}
 
-/* .data-display-container {
-  width: 95%;
-  border: 1px solid black;
-} */
+.data-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.input-form-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-search-text {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .display-item-container {
   width: 100%;
@@ -34,4 +61,12 @@
 
 .character-row {
   margin-top: 1rem;
+}
+
+.pages-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-top: 2rem;
 }
