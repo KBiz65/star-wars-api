@@ -1,32 +1,49 @@
 import React from "react";
-// import axios from "axios";
 
 class DisplayItem extends React.Component {
-  // getItemName(item) {
-  //   axios.get(item).then((response) => {
-  //     console.log("data from axios inside function: ", response.data.name);
-  //     return response.data.name;
-  //   });
-  // }
-
   render() {
-    // console.log(this.props.characters.results);
-    const charactersArray = this.props.characters.results;
-    console.log(charactersArray);
-    // const characterName = charactersArray.forEach((character) => {
-    //   console.log(character.name);
-    // });
+    const characters = this.props.characters.map((character) => (
+      <div className="row display-character-rows">
+        <div className="col col-sm-3 character-row">{character.name}</div>
+        <div className="col col-sm-2 character-row">{character.birth_year}</div>
+        <div className="col col-sm-1 character-row">{character.height}</div>
+        <div className="col col-sm-1 character-row">{character.mass}</div>{" "}
+        <div className="col col-sm-2 character-row">{character.homeworld}</div>
+        <div className="col col-sm-3 character-row">{character.species}</div>
+      </div>
+    ));
 
     return (
-      <div className="row display-row-container">
-        {/* <div className="col col-sm-3 display-row">
-          {charactersArray[0].name}
-        </div> */}
-        {/* <div className="col col-sm-2 display-row">{this.props.birthdate}</div>
-        <div className="col col-sm-1 display-row">{this.props.height}</div>
-        <div className="col col-sm-1 display-row">{this.props.mass}</div>
-        <div className="col col-sm-2 display-row">{this.props.homeworld}</div>
-        <div className="col col-sm-3 display-row">{this.props.species}</div> */}
+      <div className="display-item-container">
+        <div className="row display-row-header">
+          <div className="col col-sm-3">Name</div>
+          <div className="col col-sm-2">Birthdate</div>
+          <div className="col col-sm-1">Height</div>
+          <div className="col col-sm-1">Weight</div>
+          <div className="col col-sm-2">Homeworld</div>
+          <div className="col col-sm-3">Species</div>
+        </div>
+        <div className="characters-row-container">{characters}</div>
+        <div className="pages-container">
+          <button
+            type="button"
+            className="col col-sm-2 btn previous-next-buttons"
+            onClick={(e) => {
+              this.props.handlePageSubmit("previousButton");
+            }}
+          >
+            Previous Page
+          </button>
+          <button
+            type="button"
+            className="col col-sm-2 btn previous-next-buttons"
+            onClick={(e) => {
+              this.props.handlePageSubmit("nextButton");
+            }}
+          >
+            Next Page
+          </button>
+        </div>
       </div>
     );
   }
