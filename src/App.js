@@ -20,7 +20,6 @@ class App extends React.Component {
 
   async getCharacters(url = "https://swapi.dev/api/people/") {
     const characters = await axios.get(url);
-    // console.log("characters from getCharacters: ", characters);
     const previousPage = await characters.data.previous;
     const nextPAGE = await characters.data.next;
 
@@ -44,6 +43,7 @@ class App extends React.Component {
   }
 
   handleSearchSubmit(event) {
+    event.preventDefault();
     let searchItem = event.target.button.value;
     let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
     this.getCharacters(apiURL);
