@@ -3,7 +3,7 @@ import React from "react";
 class DisplayItem extends React.Component {
   render() {
     const characters = this.props.characters.map((character) => (
-      <div className="row">
+      <div className="row display-character-rows">
         <div className="col col-sm-3 character-row">{character.name}</div>
         <div className="col col-sm-2 character-row">{character.birth_year}</div>
         <div className="col col-sm-1 character-row">{character.height}</div>
@@ -23,12 +23,12 @@ class DisplayItem extends React.Component {
           <div className="col col-sm-2">Homeworld</div>
           <div className="col col-sm-3">Species</div>
         </div>
-        <div>{characters}</div>
+        <div className="characters-row-container">{characters}</div>
         <div className="pages-container">
           <button
             type="button"
-            className="col col-sm-4 btn previous-next-buttons"
-            onclick={(e) => {
+            className="col col-sm-2 btn previous-next-buttons"
+            onClick={(e) => {
               this.props.handlePageSubmit("previousButton");
             }}
           >
@@ -36,8 +36,8 @@ class DisplayItem extends React.Component {
           </button>
           <button
             type="button"
-            className="col col-sm-4 btn previous-next-buttons"
-            onclick={(e) => {
+            className="col col-sm-2 btn previous-next-buttons"
+            onClick={(e) => {
               this.props.handlePageSubmit("nextButton");
             }}
           >

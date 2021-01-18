@@ -11,6 +11,8 @@ class App extends React.Component {
     super();
     this.state = {
       characters: [],
+      previous: "",
+      next: "",
     };
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handlePageSubmit = this.handlePageSubmit.bind(this);
@@ -18,6 +20,9 @@ class App extends React.Component {
 
   async getCharacters(url = "https://swapi.dev/api/people/") {
     const characters = await axios.get(url);
+    // console.log("characters from getCharacters: ", characters);
+    const previousPage = await characters.data.previous;
+    const nextPAGE = await characters.data.next;
 
     for (const character of characters.data.results) {
       const homeworld = await axios.get(character.homeworld);
@@ -30,26 +35,31 @@ class App extends React.Component {
         character.species = "human";
       }
 
-      this.setState({ characters: characters.data.results });
+      this.setState({
+        characters: characters.data.results,
+        previous: previousPage,
+        next: nextPAGE,
+      });
     }
   }
 
   handleSearchSubmit(event) {
     let searchItem = event.target.button.value;
-    console.log("searchItem value: ", event.target.button.value);
     let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
     this.getCharacters(apiURL);
   }
 
   handlePageSubmit(buttonName) {
-    console.log("handlePageSubmit called!");
-
     if (buttonName === "previousButton") {
-      console.log("Previous button clicked");
+      if (this.state.previous) {
+        this.getCharacters(this.state.previous);
+      }
     }
 
     if (buttonName === "nextButton") {
-      console.log("Next button clicked");
+      if (this.state.next) {
+        this.getCharacters(this.state.next);
+      }
     }
   }
 

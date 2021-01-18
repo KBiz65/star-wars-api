@@ -4,8 +4,7 @@ class InputContent extends React.Component {
   render() {
     return (
       <div className="input-content-container">
-        <h1>InputContent Content</h1>
-        <h3>Search for a person, homeworld, or species!</h3>
+        <h3>Enter the name of a character to search for!</h3>
       </div>
     );
   }

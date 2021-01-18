@@ -9,12 +9,24 @@
 
 .header-container {
   width: 100%;
-  font-size: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-container h1 {
+  margin-top: 5rem;
+  font-size: 3rem;
+  color: white;
 }
 
 .input-content-container h3 {
+  width: 100%;
+  margin-top: 2rem;
   font-family: "Encode Sans";
   font-weight: 400;
+  color: white;
 }
 
 .data-container {
@@ -50,23 +62,69 @@ form {
 }
 
 .display-item-container {
-  width: 100%;
+  width: 95%;
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .display-row-header {
-  width: 100%;
+  width: 95%;
   margin-top: 3rem;
+  font-size: 1.5vw;
   font-weight: 700;
+  background: rgb(255, 204, 204);
+}
+
+.characters-row-container {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgb(196, 196, 196);
+}
+
+.display-character-rows {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px dotted black;
 }
 
 .character-row {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
   margin-top: 1rem;
 }
 
 .pages-container {
+  width: 95%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-top: 2rem;
+}
+
+.previous-next-buttons {
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .display-row-header {
+    font-size: 2.25vw;
+  }
+
+  .character-row {
+    font-size: 0.75rem;
+  }
 }

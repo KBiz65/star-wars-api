@@ -13,7 +13,10 @@ body {
   font-family: "Alegreya Sans SC", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #cccccc;
+  background-image: url(./space-background.jpg);
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
 }
 
 code {
@@ -23,6 +26,7 @@ code {
 
 #root {
   width: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
