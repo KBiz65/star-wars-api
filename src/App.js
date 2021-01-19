@@ -24,7 +24,8 @@ class App extends React.Component {
     const nextPAGE = await characters.data.next;
 
     for (const character of characters.data.results) {
-      const homeworld = await axios.get(character.homeworld);
+      const homeworldUrlHttps = character.homeworld.split(":")[1];
+      const homeworld = await axios.get("https:" + homeworldUrlHttps);
       character.homeworld = homeworld.data.name;
 
       const species = await axios.get(character.species);
