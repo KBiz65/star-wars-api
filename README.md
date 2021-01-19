@@ -1,4 +1,4 @@
-# Expense Tracker
+# Star Wars Character Search
 ## React App
 
 <br>
