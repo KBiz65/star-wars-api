@@ -82,6 +82,8 @@ class App extends React.Component {
         />
         <DisplayItem
           characters={this.state.characters}
+          previous={this.state.previous}
+          next={this.state.next}
           handlePageSubmit={this.handlePageSubmit}
         />
       </div>

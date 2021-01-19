@@ -31,6 +31,7 @@ class DisplayItem extends React.Component {
             onClick={(e) => {
               this.props.handlePageSubmit("previousButton");
             }}
+            style={this.props.previous === null ? { visibility: "hidden" } : {}}
           >
             Previous Page
           </button>
@@ -40,6 +41,7 @@ class DisplayItem extends React.Component {
             onClick={(e) => {
               this.props.handlePageSubmit("nextButton");
             }}
+            style={this.props.next === null ? { visibility: "hidden" } : {}}
           >
             Next Page
           </button>
