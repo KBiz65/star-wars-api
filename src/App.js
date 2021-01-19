@@ -55,7 +55,7 @@ class App extends React.Component {
     if (buttonName === "previousButton") {
       if (this.state.previous) {
         const previousUrlHttps = this.state.previous.split(":")[1];
-        this.getCharacters(previousUrlHttps);
+        this.getCharacters("http:" + previousUrlHttps);
       }
     }
 
