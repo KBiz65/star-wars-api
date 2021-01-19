@@ -4,24 +4,12 @@ class DisplayItem extends React.Component {
   render() {
     const characters = this.props.characters.map((character, index) => (
       <div className="row display-character-rows" key={index}>
-        <div className="col col-sm-3 character-row" key={character.name}>
-          {character.name}
-        </div>
-        <div className="col col-sm-2 character-row" key={character.birth_year}>
-          {character.birth_year}
-        </div>
-        <div className="col col-sm-1 character-row" key={character.height}>
-          {character.height}
-        </div>
-        <div className="col col-sm-1 character-row" key={character.mass}>
-          {character.mass}
-        </div>{" "}
-        <div className="col col-sm-2 character-row" key={character.homeworld}>
-          {character.homeworld}
-        </div>
-        <div className="col col-sm-3 character-row" key={character.species}>
-          {character.species}
-        </div>
+        <div className="col col-sm-3 character-row">{character.name}</div>
+        <div className="col col-sm-2 character-row">{character.birth_year}</div>
+        <div className="col col-sm-1 character-row">{character.height}</div>
+        <div className="col col-sm-1 character-row">{character.mass}</div>{" "}
+        <div className="col col-sm-2 character-row">{character.homeworld}</div>
+        <div className="col col-sm-3 character-row">{character.species}</div>
       </div>
     ));
 
