@@ -54,13 +54,15 @@ class App extends React.Component {
   handlePageSubmit(buttonName) {
     if (buttonName === "previousButton") {
       if (this.state.previous) {
-        this.getCharacters(this.state.previous);
+        const previousUrlHttps = this.state.previous.split(":")[1];
+        this.getCharacters(previousUrlHttps);
       }
     }
 
     if (buttonName === "nextButton") {
       if (this.state.next) {
-        this.getCharacters(this.state.next);
+        const nextUrlHttps = this.state.next.split(":")[1];
+        this.getCharacters("https:" + nextUrlHttps);
       }
     }
   }
