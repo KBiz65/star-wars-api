@@ -28,11 +28,12 @@ class App extends React.Component {
       const homeworld = await axios.get("https:" + homeworldUrlHttps);
       character.homeworld = homeworld.data.name;
 
-      const species = await axios.get(character.species);
-      character.species = species.data.name;
-
-      if (!character.species) {
+      if (character.species.length === 0) {
         character.species = "human";
+      } else {
+        const speciesUrlHttps = character.species[0].split(":")[1];
+        const species = await axios.get("https:" + speciesUrlHttps);
+        character.species = species.data.name;
       }
 
       this.setState({
