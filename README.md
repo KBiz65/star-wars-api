@@ -11,7 +11,7 @@ Try it [here](https://kbiz65-star-wars-api.herokuapp.com/)
 
 <br>
 
-<image src="src/space-background.jpg">
+<image src="src/star-wars-app-screenshot.png">
 
 ## Summary
 
