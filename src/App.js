@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
-import InputContent from "./components/InputContent";
+// import InputContent from "./components/InputContent";
 import InputForm from "./components/InputForm";
 import DisplayItem from "./components/DisplayItem";
 
@@ -75,7 +75,6 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <InputContent />
         <InputForm
           characters={this.state.characters}
           handleSearchSubmit={this.handleSearchSubmit}

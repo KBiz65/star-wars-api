@@ -1,3 +1,13 @@
+@font-face {
+  font-family: "starWars";
+  src: url("./fonts/Starjedi.ttf");
+}
+
+@font-face {
+  font-family: "starWarsHollow";
+  src: url("./fonts/Starjhol.ttf");
+}
+
 html {
   margin: 0;
   padding: 0;
@@ -10,7 +20,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  font-family: "Alegreya Sans SC", sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-image: url(./space-background.jpg);
