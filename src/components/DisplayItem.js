@@ -41,7 +41,11 @@ class DisplayItem extends React.Component {
             onClick={(e) => {
               this.props.handlePageSubmit("nextButton");
             }}
-            style={this.props.next === null ? { visibility: "hidden" } : {}}
+            style={
+              this.props.next === null
+                ? { visibility: "hidden" }
+                : { padding: "5px" }
+            }
           >
             Next Page
           </button>
