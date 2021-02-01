@@ -2,73 +2,73 @@ import React from "react";
 import "./App.css";
 import axios from "axios";
 import Header from "./components/Header";
-// import InputContent from "./components/InputContent";
 import InputForm from "./components/InputForm";
-import DisplayItem from "./components/DisplayItem";
+import DisplayCharacters from "./components/DisplayCharacters";
 
 class App extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       characters: [],
-      previous: "",
-      next: "",
+      pages: {
+        previous: null,
+        next: null,
+      },
     };
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handlePageSubmit = this.handlePageSubmit.bind(this);
+    this.httpToHttps = this.httpToHttps.bind(this);
   }
 
-  async getCharacters(url = "https://swapi.dev/api/people/") {
+  componentDidMount() {
+    this.getCharacters("https://swapi.dev/api/people/");
+  }
+
+  async getCharacters(url) {
     const characters = await axios.get(url);
-    const previousPage = await characters.data.previous;
-    const nextPAGE = await characters.data.next;
+    const previousPageUrl = characters.data.previous;
+    const nextPageUrl = characters.data.next;
 
     for (const character of characters.data.results) {
-      const homeworldUrlHttps = character.homeworld.split(":")[1];
-      const homeworld = await axios.get("https:" + homeworldUrlHttps);
-      character.homeworld = homeworld.data.name;
+      console.log("character.homeWorld: ", character.homeworld);
+      const homeWorldUrlHttps = this.httpToHttps(character.homeworld);
+      const homeWorld = await axios.get(homeWorldUrlHttps);
+      character.homeWorld = homeWorld.data.name;
 
       if (character.species.length === 0) {
-        character.species = "human";
+        character.species = "Human";
       } else {
-        const speciesUrlHttps = character.species[0].split(":")[1];
-        const species = await axios.get("https:" + speciesUrlHttps);
+        const speciesUrlHttps = this.httpToHttps(character.species[0]);
+        const species = await axios.get(speciesUrlHttps);
         character.species = species.data.name;
       }
-
-      this.setState({
-        characters: characters.data.results,
-        previous: previousPage,
-        next: nextPAGE,
-      });
     }
+    this.setState({
+      characters: characters.data.results,
+      pages: {
+        previous: previousPageUrl,
+        next: nextPageUrl,
+      },
+    });
+  }
+
+  httpToHttps(httpUrl) {
+    console.log("httpUrl: ", httpUrl);
+    return httpUrl.replace("http", "https");
   }
 
   handleSearchSubmit(event) {
     event.preventDefault();
-    let searchItem = event.target.button.value;
-    let apiURL = "https://swapi.py4e.com/api/people/?search=" + searchItem;
-    this.getCharacters(apiURL);
+    const searchItem = event.target.button.value;
+    this.getCharacters(
+      "https://swapi.py4e.com/api/people/?search=" + searchItem
+    );
   }
 
   handlePageSubmit(buttonName) {
-    if (buttonName === "previousButton") {
-      if (this.state.previous) {
-        const previousUrlHttps = this.state.previous.split(":")[1];
-        this.getCharacters("https:" + previousUrlHttps);
-      }
-    }
-
-    if (buttonName === "nextButton") {
-      if (this.state.next) {
-        const nextUrlHttps = this.state.next.split(":")[1];
-        this.getCharacters("https:" + nextUrlHttps);
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.getCharacters();
+    console.log(this.state.pages[buttonName]);
+    const buttonsUrlHttps = this.httpToHttps(this.state.pages[buttonName]);
+    this.getCharacters(buttonsUrlHttps);
   }
 
   render() {
@@ -79,10 +79,10 @@ class App extends React.Component {
           characters={this.state.characters}
           handleSearchSubmit={this.handleSearchSubmit}
         />
-        <DisplayItem
+        <DisplayCharacters
           characters={this.state.characters}
-          previous={this.state.previous}
-          next={this.state.next}
+          previous={this.state.pages.previous}
+          next={this.state.pages.next}
           handlePageSubmit={this.handlePageSubmit}
         />
       </div>
