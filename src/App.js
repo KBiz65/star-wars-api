@@ -30,19 +30,31 @@ class App extends React.Component {
     const nextPageUrl = characters.data.next;
 
     for (const character of characters.data.results) {
-      console.log("character.homeWorld: ", character.homeworld);
-      const homeWorldUrlHttps = this.httpToHttps(character.homeworld);
-      const homeWorld = await axios.get(homeWorldUrlHttps);
-      character.homeWorld = homeWorld.data.name;
+      // check if url is already in https format. if so don't convert
+      if (JSON.stringify(character.homeworld[4]) === JSON.stringify("s")) {
+        const homeWorld = await axios.get(character.homeworld);
+        character.homeWorld = homeWorld.data.name;
+      } else {
+        const homeWorldUrlHttps = this.httpToHttps(character.homeworld);
+        const homeWorld = await axios.get(homeWorldUrlHttps);
+        character.homeWorld = homeWorld.data.name;
+      }
 
       if (character.species.length === 0) {
         character.species = "Human";
       } else {
-        const speciesUrlHttps = this.httpToHttps(character.species[0]);
-        const species = await axios.get(speciesUrlHttps);
-        character.species = species.data.name;
+        // check for
+        if (JSON.stringify(character.species[0][4]) === JSON.stringify("s")) {
+          const species = await axios.get(character.species[0]);
+          character.species = species.data.name;
+        } else {
+          const speciesUrlHttps = this.httpToHttps(character.species[0]);
+          const species = await axios.get(speciesUrlHttps);
+          character.species = species.data.name;
+        }
       }
     }
+
     this.setState({
       characters: characters.data.results,
       pages: {
@@ -53,7 +65,6 @@ class App extends React.Component {
   }
 
   httpToHttps(httpUrl) {
-    console.log("httpUrl: ", httpUrl);
     return httpUrl.replace("http", "https");
   }
 
@@ -61,7 +72,7 @@ class App extends React.Component {
     event.preventDefault();
     const searchItem = event.target.button.value;
     this.getCharacters(
-      "https://swapi.py4e.com/api/people/?search=" + searchItem
+      "http://swapi.py4e.com/api/people/?search=" + searchItem
     );
   }
 
