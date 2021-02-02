@@ -72,7 +72,7 @@ class App extends React.Component {
     event.preventDefault();
     const searchItem = event.target.button.value;
     this.getCharacters(
-      "http://swapi.py4e.com/api/people/?search=" + searchItem
+      "https://swapi.py4e.com/api/people/?search=" + searchItem
     );
   }
 
